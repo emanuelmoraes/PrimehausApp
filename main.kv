@@ -1,0 +1,437 @@
+WindowManager:
+    TelaInicial:
+    TelaCalculo:
+    TelaVenda:
+    TelaContato:
+
+<TelaInicial@Screen>:
+    name: 'telainicial'
+    canvas.before:
+        Color: 
+            rgba: (212/255, 75/255, 119/255, 1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    BoxLayout:
+        orientation: 'vertical'
+        padding: [100, 50, 100, 50]
+        Image:
+            source: 'logobranco.png'
+        Button:
+            text: 'Começar'
+            on_press: app.root.current = 'telacalculo'
+            size_hint_y: None
+            height: 40
+            background_color: (212/255, 75/255, 119/255, 0.5)
+            font_size: 30
+        Button:
+            text: 'Contato'
+            on_press: app.root.current = 'telacontato'
+            size_hint_y: None
+            height: 40
+            background_color: (212/255, 75/255, 119/255, 0.5)
+            font_size: 30
+
+#:set labels_width 170
+#:set labels_height 30
+#:set edit_width 100
+#:set edit_height 30
+
+<TelaCalculo@Screen>:
+    name: 'telacalculo'
+    canvas.before:
+        Color: 
+            rgba: (212/255, 75/255, 119/255, 1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    BoxLayout:
+        orientation: 'vertical'
+        padding: [50, 25, 50, 1]
+        Label:
+            text: 'Custo'
+            font_size: 50
+            bold: True
+        BoxLayout:
+            Label:
+                text: 'Custo por M2 (R$)'
+                size_hint_x: None
+                size_hint_y: None
+                width: labels_width
+                height: labels_height
+            TextInput:
+                id: editCPM2
+                size_hint_x: None
+                size_hint_y: None
+                multiline: False
+                width: edit_width
+                height: edit_height
+                text: '88.0'
+        BoxLayout:
+            Label:
+                text: 'IPI (%)'
+                size_hint_x: None
+                size_hint_y: None
+                width: labels_width
+                height: labels_height
+            TextInput:
+                id: editIPI
+                size_hint_x: None
+                size_hint_y: None
+                multiline: False
+                width: edit_width
+                height: edit_height
+                text: '6.5'
+            TextInput:
+                id: editIPIoutput
+                size_hint_x: None
+                size_hint_y: None
+                multiline: False
+                width: edit_width
+                height: edit_height
+        BoxLayout:
+            Label:
+                text: 'Frete (%)'
+                size_hint_x: None
+                size_hint_y: None
+                width: labels_width
+                height: labels_height
+            TextInput:
+                id: editFrete
+                size_hint_x: None
+                size_hint_y: None
+                multiline: False
+                width: edit_width
+                height: edit_height
+                text: '3'
+            TextInput:
+                id: editFreteoutput
+                size_hint_x: None
+                size_hint_y: None
+                multiline: False
+                width: edit_width
+                height: edit_height
+        BoxLayout:
+            Label:
+                text: 'Base M2 (R$)'
+                size_hint_x: None
+                size_hint_y: None
+                width: labels_width
+                height: labels_height
+            TextInput:
+                id: editBaseM2
+                size_hint_y: None
+                multiline: False
+                height: edit_height
+                text: '15.0'
+        BoxLayout:
+            Label:
+                text: 'Custo Total M2 (R$)'
+                size_hint_x: None
+                size_hint_y: None
+                width: labels_width
+                height: labels_height
+            TextInput:
+                id: editCTM2
+                size_hint_y: None
+                multiline: False
+                height: edit_height
+        BoxLayout:
+            Label:
+                text: 'Altura'
+                size_hint_x: None
+                size_hint_y: None
+                width: labels_width
+                height: labels_height
+            TextInput:
+                id: editAltura
+                size_hint_y: None
+                multiline: False
+                height: edit_height
+                text: '2'
+        BoxLayout:
+            Label:
+                text: 'Largura'
+                size_hint_x: None
+                size_hint_y: None
+                width: labels_width
+                height: labels_height
+            TextInput:
+                id: editLargura
+                size_hint_y: None
+                multiline: False
+                height: edit_height
+                text: '3'
+        BoxLayout:
+            Label:
+                text: 'Area total'
+                size_hint_x: None
+                size_hint_y: None
+                width: labels_width
+                height: labels_height
+            TextInput:
+                id: editM2T
+                size_hint_y: None
+                multiline: False
+                height: edit_height
+        BoxLayout:
+            Label:
+                text: 'Custo Total do Tapete (R$)'
+                size_hint_x: None
+                size_hint_y: None
+                width: labels_width
+                height: labels_height
+            TextInput:
+                id: editCustoTPT
+                size_hint_y: None
+                multiline: False
+                height: edit_height
+        BoxLayout:
+            Label:
+                text: 'Desperdicio M2 (R$)'
+                size_hint_x: None
+                size_hint_y: None
+                width: labels_width
+                height: labels_height
+            TextInput:
+                id: editDesperdicioM2
+                size_hint_y: None
+                multiline: False
+                height: edit_height
+                text: '1.32'
+        BoxLayout:
+            Label:
+                text: 'Custo Desperdicio (R%)'
+                size_hint_x: None
+                size_hint_y: None
+                width: labels_width
+                height: labels_height
+            TextInput:
+                id: editCustoDesperdicio
+                size_hint_y: None
+                multiline: False
+                height: edit_height
+        BoxLayout:
+            Label:
+                text: 'Custo com 100% (R$)'
+                size_hint_x: None
+                size_hint_y: None
+                width: labels_width
+                height: labels_height
+            TextInput:
+                id: editCustocom100
+                size_hint_y: None
+                multiline: False
+                height: edit_height
+        BoxLayout:
+            Label:
+                text: 'Custo com 50% (R$)'
+                size_hint_x: None
+                size_hint_y: None
+                width: labels_width
+                height: labels_height
+            TextInput:
+                id: editCustocom50
+                size_hint_y: None
+                multiline: False
+                height: edit_height
+        BoxLayout:
+            Button:
+                text: 'Inicio'
+                background_color: 'pink'
+                on_press: app.root.current = 'telainicial'
+            Button:
+                text: 'Resetar'
+                background_color: 'pink'
+                on_press: root.resetar()
+            Button:
+                text: 'Calcular'
+                background_color: 'pink'
+                on_press: root.calcular()
+            Button:
+                id: btnVenda
+                text: 'Venda'
+                on_press: app.root.current = 'telavenda'
+                background_color: 'pink'
+                disabled: True
+
+<TelaVenda@Screen>:
+    name: 'telavenda'
+    canvas.before:
+        Color: 
+            rgba: (212/255, 75/255, 119/255, 1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    BoxLayout:
+        orientation: 'vertical'
+        padding: [50, 1, 50, 1]
+        Label:
+            text: "Venda"
+            font_size: 30
+        BoxLayout:
+            Label:
+                text: 'Custo total 100%'
+                size_hint_x: None
+                size_hint_y: None
+                width: labels_width
+                height: labels_height
+            CheckBox:
+                active: True
+                group: 'custo_venda'
+                id: checkCustoVenda100
+            TextInput:
+                id: editCustoVenda100
+                size_hint_y: None
+                multiline: False
+                height: labels_height
+                text: '0.0'
+            Label:
+                text: '50%'
+                size_hint_x: None
+                size_hint_y: None
+                width: labels_width
+                height: labels_height
+            CheckBox:
+                active: False
+                group: 'custo_venda'
+                id: checkCustoVenda50
+            TextInput:
+                id: editCustoVenda50
+                size_hint_y: None
+                multiline: False
+                height: labels_height
+                text: '0.0'
+        BoxLayout:
+            Label:
+                text: 'Margem'
+                size_hint_x: None
+                size_hint_y: None
+                width: labels_width
+                height: labels_height
+            TextInput:
+                id: editMargem
+                size_hint_y: None
+                multiline: False
+                height: labels_height
+                text: '2.7'
+        BoxLayout:
+            Label:
+                text: 'Preço de venda'
+                size_hint_x: None
+                size_hint_y: None
+                width: labels_width
+                height: labels_height
+            TextInput:
+                id: editPrecoVenda
+                size_hint_y: None
+                multiline: False
+                height: labels_height
+        BoxLayout:
+            Label:
+                text: 'Comissão (%)'
+                size_hint_x: None
+                size_hint_y: None
+                width: labels_width
+                height: labels_height
+            TextInput:
+                id: editComissao
+                size_hint_y: None
+                multiline: False
+                height: labels_height
+                text: '10.0'
+            TextInput:
+                id: editComissaoOutput
+                size_hint_y: None
+                multiline: False
+                height: labels_height
+        BoxLayout:
+            Label:
+                text: 'Imposto (%)'
+                size_hint_x: None
+                size_hint_y: None
+                width: labels_width
+                height: labels_height
+            TextInput:
+                id: editImposto
+                size_hint_y: None
+                multiline: False
+                height: labels_height
+                text: '6.0'
+            TextInput:
+                id: editImpostoOutput
+                size_hint_y: None
+                multiline: False
+                height: labels_height
+        BoxLayout:
+            Label:
+                text: 'Markup bruto'
+                size_hint_x: None
+                size_hint_y: None
+                width: labels_width
+                height: labels_height
+            TextInput:
+                id: editMarkupBruto
+                size_hint_y: None
+                multiline: False
+                height: labels_height
+        BoxLayout:
+            Label:
+                text: 'Valor venda M2'
+                size_hint_x: None
+                size_hint_y: None
+                width: labels_width
+                height: labels_height
+            TextInput:
+                id: editValorVendaM2
+                size_hint_y: None
+                multiline: False
+                height: labels_height
+        BoxLayout:
+            Label:
+                text: 'Percental Markup'
+                size_hint_x: None
+                size_hint_y: None
+                width: labels_width
+                height: labels_height
+            TextInput:
+                id: editPercentualMarkup
+                size_hint_y: None
+                multiline: False
+                height: labels_height
+        BoxLayout:
+            Button:
+                text: 'Inicio'
+                background_color: 'pink'
+                on_press: app.root.current = 'telainicial'
+            Button:
+                text: 'Custo'
+                on_press: app.root.current = 'telacalculo'
+                background_color: 'pink'
+            Button:
+                text: 'Calcular'
+                background_color: 'pink'
+                on_press: root.calcular()
+            Button:
+                text: 'Resetar'
+                background_color: 'pink'
+                on_press: root.resetar()
+
+<TelaContato@Screen>:
+    name: 'telacontato'
+    canvas.before:
+        Color: 
+            rgba: (212/255, 75/255, 119/255, 1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    Label:
+        id: need_help_link
+        font_size: 40
+        bold: True
+        markup: True
+        text: '[ref=some]www.primehaus.com.br[/ref]'
+        color: [0, 0, 1, 1]
+        on_ref_press:
+            import webbrowser
+            webbrowser.open('http://primehaus.com.br')

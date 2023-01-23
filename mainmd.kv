@@ -1,0 +1,349 @@
+MDScreenManager:
+    TelaInicial:
+    TelaCalculo:
+    TelaVenda:
+    TelaContato:
+
+<TelaInicial@MDScreen>:
+    name: 'telainicial'
+    FitImage:
+        source: "logorosa.jpg"
+        on_touch_up: app.root.current = 'telacalculo'
+
+#:set labels_height 15
+
+<TelaCalculo@MDScreen>:
+    name: 'telacalculo'
+    id: telaCalculo
+    canvas.before:
+        Color: 
+            rgba: (1, 1, 1, 1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    BoxLayout:
+        orientation: 'vertical'
+        padding: [10, 25, 10, 1]
+        size_hint_x: 1
+        size_hint_y: 1
+        spacing: 10
+        MDLabel:
+            text: 'Custo'
+            theme_text_color: 'Primary'
+            adaptive_size: True
+            size_hint: 1, 0.2
+            halign: "center"
+            font_size: 30
+            bold: True
+        BoxLayout:
+            size_hint: 1, 0.1
+            MDTextField:
+                id: editCMP2
+                mode: "rectangle"
+                hint_text: "Custo por M2 (R$)"
+                size_hint: 0.3, None
+                height: labels_height
+                text: "88.0"
+                hint_text_color_normal: (212/255, 75/255, 119/255, 1)
+            MDTextField:
+                id: editIPI
+                mode: "rectangle"
+                hint_text: "IPI (%)"
+                size_hint: 0.3, None
+                height: labels_height
+                text: "6.5"
+            MDTextField:
+                id: editIPIoutput
+                mode: "rectangle"
+                hint_text: "IPI valor"
+                size_hint: 0.3, None
+                height: labels_height
+        BoxLayout:
+            size_hint: 1, 0.1
+            MDTextField:
+                id: editFrete
+                mode: "rectangle"
+                hint_text: "Frete (%)"
+                size_hint: 0.3, None
+                height: labels_height
+                text: "3"
+            MDTextField:
+                id: editFreteoutput
+                mode: "rectangle"
+                hint_text: "Frete valor"
+                size_hint: 0.3, None
+                height: labels_height
+            MDTextField:
+                id: editBaseM2
+                mode: "rectangle"
+                hint_text: "Base M2 (R$)"
+                size_hint: 0.3, None
+                height: labels_height
+                text: "15.0"
+        BoxLayout:
+            size_hint: 1, 0.1
+            MDTextField:
+                id: editCTM2
+                mode: "rectangle"
+                hint_text: "Custo Total M2 (R$)"
+                size_hint: 0.3, None
+                height: labels_height
+            MDTextField:
+                id: editAltura
+                mode: "rectangle"
+                hint_text: "Altura"
+                size_hint: 0.3, None
+                height: labels_height
+                text: "2"
+            MDTextField:
+                id: editLargura
+                mode: "rectangle"
+                hint_text: "Largura"
+                size_hint: 0.3, None
+                height: labels_height
+                text: "3"
+        BoxLayout:
+            size_hint: 1, 0.1
+            MDTextField:
+                id: editM2T
+                mode: "rectangle"
+                hint_text: "Area total"
+                size_hint: 0.45, None
+                height: labels_height
+            MDTextField:
+                id: editCustoTPT
+                mode: "rectangle"
+                hint_text: "Custo Total do Tapete (R$)"
+                size_hint: 0.45, None
+                height: labels_height
+        BoxLayout:
+            size_hint: 1, 0.1
+            MDTextField:
+                id: editDesperdicioM2
+                mode: "rectangle"
+                hint_text: "Desperdicio M2 (R$)"
+                size_hint: 0.45, None
+                height: labels_height
+                text: "1.32"
+            MDTextField:
+                id: editCustoDesperdicio
+                mode: "rectangle"
+                hint_text: "Custo Desperdicio (R%)"
+                size_hint: 0.45, None
+                height: labels_height
+        BoxLayout:
+            size_hint: 1, 0.1
+            MDTextField:
+                id: editCustocom100
+                mode: "rectangle"
+                hint_text: "Custo com 100% (R$)"
+                size_hint: 0.45, None
+                height: labels_height
+            MDTextField:
+                id: editCustocom50
+                mode: "rectangle"
+                hint_text: "Custo com 50% (R$)"
+                size_hint: 0.45, None
+                height: labels_height
+        BoxLayout:
+            size_hint: 1, 0.2
+            MDIconButton:
+                text: 'Inicio'
+                icon: 'home'
+                md_bg_color: (212/255, 75/255, 119/255, 1)
+                on_press: app.root.current = 'telainicial'
+                size_hint: 0.1, None
+            MDIconButton:
+                text: 'Contato'
+                icon: 'email'
+                md_bg_color: (212/255, 75/255, 119/255, 1)
+                on_press: app.root.current = 'telacontato'
+                size_hint: 0.1, None
+            MDIconButton:
+                text: 'Salvar'
+                icon: 'content-save-outline'
+                md_bg_color: (212/255, 75/255, 119/255, 1)
+                on_press: root.salvar()
+                size_hint: 0.05, None
+            MDIconButton:
+                text: 'Carregar'
+                icon: 'folder-download-outline'
+                md_bg_color: (212/255, 75/255, 119/255, 1)
+                on_press: root.carregar()
+                size_hint: 0.05, None
+            MDRaisedButton:
+                text: 'Resetar'
+                md_bg_color: (212/255, 75/255, 119/255, 1)
+                on_press: root.resetar()
+                size_hint: 0.3, None
+            MDRaisedButton:
+                text: 'Calcular'
+                md_bg_color: (212/255, 75/255, 119/255, 1)
+                on_press: root.calcular()
+                size_hint: 0.3, None
+            MDRaisedButton:
+                id: btnVenda
+                text: 'Venda'
+                on_press: app.root.current = 'telavenda'
+                md_bg_color: (212/255, 75/255, 119/255, 1)
+                disabled: True
+                size_hint: 0.2, None
+
+<TelaVenda@MDScreen>:
+    name: 'telavenda'
+    canvas.before:
+        Color: 
+            rgba: (212/255, 75/255, 119/255, 1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    BoxLayout:
+        orientation: 'vertical'
+        padding: [10, 25, 10, 1]
+        size_hint: 1, 1
+        MDLabel:
+            text: "Venda"
+            font_size: 40
+            bold: True
+            size_hint: 1, 0.2
+        BoxLayout:
+            size_hint: 1, 0.12
+            MDCheckbox:
+                active: True
+                group: 'custo_venda'
+                id: checkCustoVenda100
+                size_hint: 0.05, None
+            MDTextField:
+                id: editCustoVenda100
+                mode: "rectangle"
+                hint_text: "Custo com 100% (R$)"
+                size_hint: 0.45, None
+                height: labels_height
+                text: '0.0'
+            MDCheckbox:
+                active: False
+                group: 'custo_venda'
+                id: checkCustoVenda50
+                size_hint: 0.05, None
+            MDTextField:
+                id: editCustoVenda50
+                mode: "rectangle"
+                hint_text: "Custo com 50% (R$)"
+                size_hint: 0.45, None
+                height: labels_height
+                text: '0.0'
+        BoxLayout:
+            size_hint: 1, 0.12
+            MDTextField:
+                id: editMargem
+                mode: "rectangle"
+                hint_text: "Margem"
+                size_hint: 0.5, None
+                height: labels_height
+                text: '2.7'
+            MDTextField:
+                id: editPrecoVenda
+                mode: "rectangle"
+                hint_text: "Preço de venda"
+                size_hint: 0.5, None
+                height: labels_height
+                text: '2.7'
+        BoxLayout:
+            size_hint: 1, 0.12
+            MDTextField:
+                id: editComissao
+                mode: "rectangle"
+                hint_text: "Comissão (%)"
+                size_hint: 0.5, None
+                height: labels_height
+                text: '10.0'
+            MDTextField:
+                id: editComissaoOutput
+                mode: "rectangle"
+                hint_text: "Comissão valor"
+                size_hint: 0.5, None
+                height: labels_height
+        BoxLayout:
+            size_hint: 1, 0.12
+            MDTextField:
+                id: editImposto
+                mode: "rectangle"
+                hint_text: "Imposto (%)"
+                size_hint: 0.5, None
+                height: labels_height
+                text: '6.0'
+            MDTextField:
+                id: editImpostoOutput
+                mode: "rectangle"
+                hint_text: "Imposto valor"
+                size_hint: 0.5, None
+                height: labels_height
+        BoxLayout:
+            size_hint: 1, 0.12
+            MDTextField:
+                id: editMarkupBruto
+                mode: "rectangle"
+                hint_text: "Markup bruto"
+                size_hint: 0.3, None
+                height: labels_height
+            MDTextField:
+                id: editValorVendaM2
+                mode: "rectangle"
+                hint_text: "Valor venda M2"
+                size_hint: 0.3, None
+                height: labels_height
+            MDTextField:
+                id: editPercentualMarkup
+                mode: "rectangle"
+                hint_text: "Percental Markup"
+                size_hint: 0.3, None
+                height: labels_height
+        BoxLayout:
+            size_hint: 1, 0.2
+            MDIconButton:
+                text: 'Inicio'
+                icon: 'home'
+                md_bg_color: (212/255, 75/255, 119/255, 1)
+                on_press: app.root.current = 'telainicial'
+                size_hint: 0.2, None
+            MDRaisedButton:
+                text: 'Custo'
+                on_press: app.root.current = 'telacalculo'
+                md_bg_color: (212/255, 75/255, 119/255, 1)
+                size_hint: 0.3, None
+            MDRaisedButton:
+                text: 'Calcular'
+                md_bg_color: (212/255, 75/255, 119/255, 1)
+                on_press: root.calcular()
+                size_hint: 0.3, None
+            MDRaisedButton:
+                text: 'Resetar'
+                md_bg_color: (212/255, 75/255, 119/255, 1)
+                on_press: root.resetar()
+                size_hint: 0.2, None
+
+<TelaContato@MDScreen>:
+    name: 'telacontato'
+    canvas.before:
+        Color: 
+            rgba: (212/255, 75/255, 119/255, 1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    MDIconButton:
+        text: 'Inicio'
+        icon: "home"
+        pos_hint: {"rigth":1, "botton":1}
+        on_press: app.root.current = 'telacalculo'
+    MDLabel:
+        id: need_help_link
+        pos_hint: {"center_x":0.5, "center_y": 0.5}
+        size_hint: 0.6, 0.1
+        font_size: 30
+        markup: True
+        halign: 'center'
+        text: '[ref=some]www.primehaus.com.br[/ref]'
+        color: [0, 0, 1, 1]
+        on_ref_press:
+            import webbrowser
+            webbrowser.open("http://primehaus.com.br")
