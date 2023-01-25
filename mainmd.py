@@ -2,10 +2,15 @@ import kivy
 kivy.require("2.0.0")
 from kivymd.app import MDApp
 from kivymd.uix.screen import MDScreen
-from kivymd.uix.menu import MDDropdownMenu
+from kivy.lang import Builder
 
 class MainMdApp(MDApp):
-    pass
+    def build(self):
+        self.theme_cls.theme_style = "Dark"
+        return Builder.load_file("mainmd.kv")
+
+    def callback(self, tela):
+        self.root.current = str(tela)
 
 class TelaCalculo(MDScreen):
     def calcular(self):
@@ -42,7 +47,6 @@ class TelaCalculo(MDScreen):
         cc5d = ((custo_desperdicio * 50) / 100) + custo_tpt
         self.ids['editCustocom50'].text = "{:.2f}".format(cc5d)
 
-        self.ids['btnVenda'].disabled = False
         screenTelaVenda = self.manager.get_screen('telavenda')
         screenTelaVenda.ids['editCustoVenda100'].text = "{:.2f}".format(cctd)
         screenTelaVenda.ids['editCustoVenda50'].text = "{:.2f}".format(cc5d)

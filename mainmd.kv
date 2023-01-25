@@ -6,8 +6,14 @@ MDScreenManager:
 
 <TelaInicial@MDScreen>:
     name: 'telainicial'
+    canvas.before:
+        Color: 
+            rgba: (212/255, 75/255, 119/255, 1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
     FitImage:
-        source: "logorosa.jpg"
+        source: "logorosa.JPG"
         on_touch_up: app.root.current = 'telacalculo'
 
 #:set labels_height 15
@@ -17,25 +23,28 @@ MDScreenManager:
     id: telaCalculo
     canvas.before:
         Color: 
-            rgba: (1, 1, 1, 1)
+            rgba: (212/255, 75/255, 119/255, 1)
         Rectangle:
             pos: self.pos
             size: self.size
     BoxLayout:
         orientation: 'vertical'
-        padding: [10, 25, 10, 1]
+        padding: [0, 0, 0, 0]
         size_hint_x: 1
         size_hint_y: 1
         spacing: 10
-        MDLabel:
-            text: 'Custo'
-            theme_text_color: 'Primary'
-            adaptive_size: True
-            size_hint: 1, 0.2
-            halign: "center"
-            font_size: 30
-            bold: True
+        MDTopAppBar:
+            title: "Custo"
+            md_bg_color: (212/255, 75/255, 119/255, 1)
+            elevation: 0
+            left_action_items:
+                [
+                ['home', lambda x: app.callback('telainicial'), 'Home'],
+                ['email', lambda x: app.callback('telacontato'), 'Contato']
+                ]
+            right_action_items: [["arrow-right", lambda x: app.callback('telavenda'), 'Venda']]
         BoxLayout:
+            spacing: 20
             size_hint: 1, 0.1
             MDTextField:
                 id: editCMP2
@@ -44,7 +53,6 @@ MDScreenManager:
                 size_hint: 0.3, None
                 height: labels_height
                 text: "88.0"
-                hint_text_color_normal: (212/255, 75/255, 119/255, 1)
             MDTextField:
                 id: editIPI
                 mode: "rectangle"
@@ -60,6 +68,7 @@ MDScreenManager:
                 height: labels_height
         BoxLayout:
             size_hint: 1, 0.1
+            spacing: 20
             MDTextField:
                 id: editFrete
                 mode: "rectangle"
@@ -81,6 +90,7 @@ MDScreenManager:
                 height: labels_height
                 text: "15.0"
         BoxLayout:
+            spacing: 20
             size_hint: 1, 0.1
             MDTextField:
                 id: editCTM2
@@ -103,6 +113,7 @@ MDScreenManager:
                 height: labels_height
                 text: "3"
         BoxLayout:
+            spacing: 20
             size_hint: 1, 0.1
             MDTextField:
                 id: editM2T
@@ -117,6 +128,7 @@ MDScreenManager:
                 size_hint: 0.45, None
                 height: labels_height
         BoxLayout:
+            spacing: 20
             size_hint: 1, 0.1
             MDTextField:
                 id: editDesperdicioM2
@@ -132,6 +144,7 @@ MDScreenManager:
                 size_hint: 0.45, None
                 height: labels_height
         BoxLayout:
+            spacing: 20
             size_hint: 1, 0.1
             MDTextField:
                 id: editCustocom100
@@ -147,30 +160,6 @@ MDScreenManager:
                 height: labels_height
         BoxLayout:
             size_hint: 1, 0.2
-            MDIconButton:
-                text: 'Inicio'
-                icon: 'home'
-                md_bg_color: (212/255, 75/255, 119/255, 1)
-                on_press: app.root.current = 'telainicial'
-                size_hint: 0.1, None
-            MDIconButton:
-                text: 'Contato'
-                icon: 'email'
-                md_bg_color: (212/255, 75/255, 119/255, 1)
-                on_press: app.root.current = 'telacontato'
-                size_hint: 0.1, None
-            MDIconButton:
-                text: 'Salvar'
-                icon: 'content-save-outline'
-                md_bg_color: (212/255, 75/255, 119/255, 1)
-                on_press: root.salvar()
-                size_hint: 0.05, None
-            MDIconButton:
-                text: 'Carregar'
-                icon: 'folder-download-outline'
-                md_bg_color: (212/255, 75/255, 119/255, 1)
-                on_press: root.carregar()
-                size_hint: 0.05, None
             MDRaisedButton:
                 text: 'Resetar'
                 md_bg_color: (212/255, 75/255, 119/255, 1)
@@ -181,13 +170,6 @@ MDScreenManager:
                 md_bg_color: (212/255, 75/255, 119/255, 1)
                 on_press: root.calcular()
                 size_hint: 0.3, None
-            MDRaisedButton:
-                id: btnVenda
-                text: 'Venda'
-                on_press: app.root.current = 'telavenda'
-                md_bg_color: (212/255, 75/255, 119/255, 1)
-                disabled: True
-                size_hint: 0.2, None
 
 <TelaVenda@MDScreen>:
     name: 'telavenda'
@@ -199,13 +181,18 @@ MDScreenManager:
             size: self.size
     BoxLayout:
         orientation: 'vertical'
-        padding: [10, 25, 10, 1]
+        padding: [0, 0, 0, 0]
         size_hint: 1, 1
-        MDLabel:
-            text: "Venda"
-            font_size: 40
-            bold: True
-            size_hint: 1, 0.2
+        MDTopAppBar:
+            title: "Venda"
+            md_bg_color: (212/255, 75/255, 119/255, 1)
+            elevation: 0
+            left_action_items:
+                [
+                ['home', lambda x: app.callback('telainicial'), 'Home'],
+                ['email', lambda x: app.callback('telacontato'), 'Contato'],
+                ['arrow-left', lambda x: app.callback('telacalculo'), 'Calculo']
+                ]
         BoxLayout:
             size_hint: 1, 0.12
             MDCheckbox:
@@ -300,27 +287,16 @@ MDScreenManager:
                 height: labels_height
         BoxLayout:
             size_hint: 1, 0.2
-            MDIconButton:
-                text: 'Inicio'
-                icon: 'home'
-                md_bg_color: (212/255, 75/255, 119/255, 1)
-                on_press: app.root.current = 'telainicial'
-                size_hint: 0.2, None
-            MDRaisedButton:
-                text: 'Custo'
-                on_press: app.root.current = 'telacalculo'
-                md_bg_color: (212/255, 75/255, 119/255, 1)
-                size_hint: 0.3, None
-            MDRaisedButton:
-                text: 'Calcular'
-                md_bg_color: (212/255, 75/255, 119/255, 1)
-                on_press: root.calcular()
-                size_hint: 0.3, None
             MDRaisedButton:
                 text: 'Resetar'
                 md_bg_color: (212/255, 75/255, 119/255, 1)
                 on_press: root.resetar()
                 size_hint: 0.2, None
+            MDRaisedButton:
+                text: 'Calcular'
+                md_bg_color: (212/255, 75/255, 119/255, 1)
+                on_press: root.calcular()
+                size_hint: 0.3, None
 
 <TelaContato@MDScreen>:
     name: 'telacontato'
@@ -330,11 +306,16 @@ MDScreenManager:
         Rectangle:
             pos: self.pos
             size: self.size
-    MDIconButton:
-        text: 'Inicio'
-        icon: "home"
-        pos_hint: {"rigth":1, "botton":1}
-        on_press: app.root.current = 'telacalculo'
+    MDTopAppBar:
+        title: "Contato"
+        md_bg_color: (212/255, 75/255, 119/255, 1)
+        elevation: 0
+        pos_hint: {"top": True, "left": True}
+        left_action_items:
+            [
+            ['home', lambda x: app.callback('telainicial'), 'Home'],
+            ['engine', lambda x: app.callback('telacalculo'), 'Calculo']
+            ]
     MDLabel:
         id: need_help_link
         pos_hint: {"center_x":0.5, "center_y": 0.5}
